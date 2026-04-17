@@ -143,45 +143,70 @@
         <div class="small-card">
           <h3>第一週與 Android 基礎</h3>
           <ul>
-            <li>建立專案常見欄位：Name、Package、Minimum SDK、Language。</li>
-            <li><code>AndroidManifest.xml</code> 宣告 Activity、權限、主題。</li>
-            <li><code>res</code> 常見：<code>layout</code>、<code>drawable</code>、<code>values</code>。</li>
-            <li>Gradle 負責建構與依賴管理。</li>
+            <li>建立專案欄位必背：<code>Name</code>、<code>Package</code>、<code>Save location</code>、<code>Language</code>、<code>Minimum SDK</code>。</li>
+            <li><code>AndroidManifest.xml</code> 是 App 設定核心：宣告 <code>activity</code>、啟動畫面、權限、主題。</li>
+            <li><code>res/layout</code> 放 UI XML；<code>res/drawable</code> 放圖片與 shape；<code>res/values</code> 放字串/顏色/主題。</li>
+            <li><code>strings.xml</code> 統一管理文字，方便多語系與維護；<code>colors.xml</code> 統一顏色命名。</li>
+            <li>Project 檢視看實際資料夾，Android 檢視看開發導向分類（考題常問兩者差異）。</li>
+            <li>Minimum SDK 越低相容設備越多，但可直接用的新 API 越少。</li>
+            <li>Gradle 是建構與依賴管理工具，常見檔：<code>build.gradle</code>、<code>settings.gradle</code>。</li>
+            <li>上機考關鍵：流程熟悉、題目先易後難、留最後 3-5 分鐘檢查。</li>
           </ul>
         </div>
         <div class="small-card">
           <h3>Kotlin 基礎</h3>
           <ul>
-            <li><code>val</code> 不可重設，<code>var</code> 可重設。</li>
-            <li>可空型別加 <code>?</code>，安全呼叫 <code>?.</code>，<code>!!</code> 可能拋錯。</li>
-            <li>條件可用 <code>if-else</code> / <code>when</code>。</li>
-            <li>函式使用 <code>fun</code>，可帶參數、回傳值、預設值。</li>
+            <li><code>val</code>（唯讀）不可重新指派；<code>var</code>（可變）可重新指派。</li>
+            <li>型別推論：可寫 <code>val name = "Kotlin"</code>，編譯器仍固定型別為 <code>String</code>。</li>
+            <li>可空型別必加 <code>?</code>，例如 <code>Int?</code>；未加 <code>?</code> 不能直接塞 <code>null</code>。</li>
+            <li>安全呼叫 <code>?.</code>：空值時不崩潰；非空斷言 <code>!!</code>：若為 null 會直接 NPE。</li>
+            <li>字串模板常考：<code>$name</code>（變數）、<code>${a+b}</code>（運算式）。</li>
+            <li>條件：<code>if-else</code> 可回傳值；多分支用 <code>when</code> 較清楚。</li>
+            <li>函式：<code>fun 名稱(參數:型別): 回傳型別</code>，可設定預設參數。</li>
+            <li>單一表達式函式可簡寫，省略大括號與 <code>return</code>。</li>
+            <li>考題陷阱：0 與 null 意義不同（例如 0 分 vs 缺考）。</li>
           </ul>
         </div>
         <div class="small-card">
           <h3>Ch2 介面設計與佈局</h3>
           <ul>
-            <li>Linear / Frame / Constraint 常見佈局。</li>
-            <li>LinearLayout 未設 orientation 預設 horizontal。</li>
-            <li>ConstraintLayout 至少要水平與垂直約束。</li>
-            <li>文字用 <code>sp</code>，尺寸間距用 <code>dp</code>。</li>
+            <li>常見佈局：<code>LinearLayout</code>（線性）、<code>FrameLayout</code>（堆疊）、<code>ConstraintLayout</code>（約束）。</li>
+            <li><code>LinearLayout</code> 未寫 <code>orientation</code> 預設為 <code>horizontal</code>（常考）。</li>
+            <li><code>ConstraintLayout</code> 每個元件至少要有水平與垂直方向約束，否則會警告/錯誤。</li>
+            <li>寬高 4 種概念：<code>wrap_content</code>、<code>match_parent</code>、<code>0dp(match_constraint)</code>、固定尺寸。</li>
+            <li>在 ConstraintLayout 內常用 <code>0dp</code> 搭配左右約束做滿版寬度。</li>
+            <li><code>layout_margin*</code> 是外距；<code>padding*</code> 是內距（常混淆）。</li>
+            <li><code>gravity</code> 控內容；<code>layout_gravity</code> 控元件在父層的位置。</li>
+            <li>文字大小用 <code>sp</code>，元件尺寸/間距用 <code>dp</code>。</li>
+            <li>RadioGroup 管理多顆 RadioButton，確保同時只選一個。</li>
           </ul>
         </div>
         <div class="small-card">
           <h3>Ch3 物件控制與事件監聽</h3>
           <ul>
-            <li>先 <code>setContentView</code> 再 <code>findViewById</code>。</li>
-            <li>按鈕事件：<code>setOnClickListener { ... }</code>。</li>
-            <li>RadioButton 用 <code>isChecked</code> 判斷選項。</li>
-            <li><code>R</code> 類別管理資源 ID。</li>
+            <li>程式綁定順序：<code>setContentView()</code> 先載入畫面，再 <code>findViewById()</code> 綁元件。</li>
+            <li>XML 元件必須有 <code>id</code>，Kotlin 才能用 <code>R.id.xxx</code> 控制。</li>
+            <li>事件監聽主力：<code>setOnClickListener { ... }</code>，通常寫在 <code>onCreate()</code>。</li>
+            <li>文字更新：<code>TextView.text = "內容"</code>；換行符號是 <code>\\n</code>。</li>
+            <li>字體大小動態設定：<code>setTextSize(TypedValue.COMPLEX_UNIT_SP, 30f)</code>。</li>
+            <li>RadioButton 判斷常用 <code>isChecked</code>，搭配 <code>when</code> 轉成對應文字。</li>
+            <li>猜拳範例：電腦亂數 <code>(Math.random()*3).toInt()</code> 會得到 0/1/2。</li>
+            <li>依課堂對應：0=剪刀、1=石頭、2=布，再比對玩家出拳判斷勝負。</li>
+            <li><code>R</code> 類別常考：<code>R.id</code>、<code>R.layout</code>、<code>R.string</code>、<code>R.drawable</code>、<code>R.color</code>。</li>
           </ul>
         </div>
         <div class="small-card">
           <h3>Ch4 訊息提示元件</h3>
           <ul>
-            <li>Toast：<code>Toast.makeText(...).show()</code>。</li>
-            <li>Snackbar 可用 <code>setAction()</code> 加互動按鈕。</li>
-            <li>AlertDialog：<code>setTitle</code>、<code>setMessage</code>、<code>setItems</code>、<code>setSingleChoiceItems</code>。</li>
+            <li>Toast 基本語法：<code>Toast.makeText(context, msg, duration).show()</code>。</li>
+            <li>Toast 3 參數：Context、訊息字串、持續時間（<code>LENGTH_SHORT/LENGTH_LONG</code>）。</li>
+            <li>自訂 Toast 流程：先做 <code>custom_toast.xml</code>，再指定給 Toast 的 <code>view</code>。</li>
+            <li><code>setGravity(Gravity.TOP/BOTTOM/CENTER, x, y)</code> 控制出現位置與偏移。</li>
+            <li>Snackbar 優勢：可附互動按鈕，語法 <code>setAction("按鈕") { ... }</code>。</li>
+            <li>Snackbar 時長：<code>LENGTH_SHORT</code>、<code>LENGTH_LONG</code>、<code>LENGTH_INDEFINITE</code>。</li>
+            <li>AlertDialog 常見 API：<code>setTitle</code>、<code>setMessage</code>、<code>setItems</code>、<code>setSingleChoiceItems</code>。</li>
+            <li>按鈕型 AlertDialog：<code>setPositiveButton</code> / <code>setNegativeButton</code> / <code>setNeutralButton</code>。</li>
+            <li>考點：Toast 偏提示；Snackbar 可回應；AlertDialog 最適合要使用者做選擇/確認。</li>
           </ul>
         </div>
       </div>
