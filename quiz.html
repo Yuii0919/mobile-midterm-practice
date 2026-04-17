@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>題目練習</title>
+  <style>
+    :root { --bg:#f6f8fc; --card:#fff; --text:#1f2937; --subtle:#6b7280; --primary:#2563eb; --ok:#15803d; --bad:#b91c1c; --border:#dbe3ef; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:"Microsoft JhengHei",sans-serif; background:var(--bg); color:var(--text); line-height:1.45; }
+    .container { max-width:1100px; margin:0 auto; padding:20px; display:grid; gap:18px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+    h1,h2,h3 { margin:0 0 10px; }
+    .subtle { color:var(--subtle); font-size:.95rem; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:10px; }
+    button { border:1px solid var(--border); background:#fff; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600; }
+    button.primary { background:var(--primary); color:#fff; border-color:var(--primary); }
+    button:disabled { opacity:.55; cursor:not-allowed; }
+    .question { border:1px solid var(--border); border-radius:10px; padding:12px; margin-bottom:12px; }
+    .question h3 { font-size:1rem; margin-bottom:6px; }
+    .options label { display:block; margin:6px 0; padding:6px 8px; border-radius:7px; }
+    .options label:hover { background:#f3f7ff; }
+    .result { margin-top:6px; font-weight:700; display:none; }
+    .result.ok { color:var(--ok); }
+    .result.bad { color:var(--bad); }
+    .badge { display:inline-block; background:#eaf1ff; color:#1e3a8a; border-radius:999px; padding:2px 10px; font-size:.82rem; margin-right:6px; }
+    a { color:#2563eb; text-decoration:none; font-weight:700; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="card">
+      <h1>題目練習</h1>
+      <p class="subtle">題型：是非題 + 單選題｜每頁 10 題</p>
+      <a href="index.html">回首頁</a>
+      <div class="toolbar">
+        <span id="pageInfo" class="badge">第 1 頁 / 共 1 頁</span>
+        <span id="scoreInfo" class="badge">已作答 0 題，正確 0 題</span>
+        <button id="prevBtn">上一頁</button>
+        <button id="nextBtn">下一頁</button>
+        <button id="checkBtn" class="primary">檢查本頁答案</button>
+        <button id="resetBtn">重置作答</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2>練習區</h2>
+      <div id="quizContainer"></div>
+    </section>
+  </div>
+  <script>
+    const questions = [
+      { type:"tf", q:"LinearLayout 未設定 orientation 時，預設是水平排列。", answer:"T" },
+      { type:"tf", q:"ConstraintLayout 的元件不需要任何約束也能正確定位。", answer:"F" },
+      { type:"mc", q:"下列何者通常用於文字大小？", options:["dp","sp","px","mm"], answer:"sp" },
+      { type:"mc", q:"在 Android 專案中，版面 XML 通常放在哪個目錄？", options:["res/layout","res/values","java","manifests"], answer:"res/layout" },
+      { type:"tf", q:"TextView、Button、EditText 都屬於常見視窗元件。", answer:"T" },
+      { type:"mc", q:"RadioGroup 的主要作用是？", options:["儲存圖片","讓多個 RadioButton 形成單選群組","設定字體大小","提供多行輸入"], answer:"讓多個 RadioButton 形成單選群組" },
+      { type:"tf", q:"在 MainActivity 中，通常要先 setContentView 再 findViewById。", answer:"T" },
+      { type:"mc", q:"設定按鈕點擊事件常用哪個方法？", options:["setOnClickListener","setOnTouchOnly","onButtonStart","bindClickEvent"], answer:"setOnClickListener" },
+      { type:"tf", q:"Kotlin 的 val 宣告後可以任意重新指派新值。", answer:"F" },
+      { type:"mc", q:"Kotlin 可空型別的寫法是哪個？", options:["Int!","Int?","?Int","Nullable<Int> only"], answer:"Int?" },
+      { type:"mc", q:"安全呼叫運算子是哪個？", options:["!!","?.","::","->"], answer:"?." },
+      { type:"tf", q:"使用 !! 若變數為 null，可能拋出 NullPointerException。", answer:"T" },
+      { type:"mc", q:"多分支條件判斷在 Kotlin 常可用何者提高可讀性？", options:["switch","when","goto","enumOnly"], answer:"when" },
+      { type:"tf", q:"Kotlin 的 main() 可以在同一支檔案宣告很多個。", answer:"F" },
+      { type:"mc", q:"用來顯示短暫文字提示的元件是？", options:["AlertDialog","Toast","RecyclerView","Fragment"], answer:"Toast" },
+      { type:"tf", q:"Toast.makeText(...) 最後通常要呼叫 show() 才會顯示。", answer:"T" },
+      { type:"mc", q:"Snackbar 相較 Toast 的常見優勢是？", options:["能附加回應按鈕","一定會全螢幕顯示","只能顯示圖片","不需要 Context"], answer:"能附加回應按鈕" },
+      { type:"mc", q:"AlertDialog 若要顯示清單選項可用哪個方法？", options:["setHintList","setItems","setListText","setDialogArray"], answer:"setItems" },
+      { type:"tf", q:"AlertDialog 適合需要使用者互動與確認的情境。", answer:"T" },
+      { type:"mc", q:"Android 資源 ID（如 R.id.xxx）由哪個類別集中管理？", options:["ResourceManager","R","AndroidRes","IDStore"], answer:"R" },
+      { type:"tf", q:"res/values 常放 colors.xml、strings.xml、themes.xml。", answer:"T" },
+      { type:"mc", q:"下列何者描述正確？", options:["dp 主要給文字大小","sp 主要給文字大小","px 最適合跨裝置 UI","sp 不受系統字體設定影響"], answer:"sp 主要給文字大小" },
+      { type:"tf", q:"FrameLayout 常用於元件堆疊效果。", answer:"T" },
+      { type:"mc", q:"ConstraintLayout 中常用 0dp 代表？", options:["隱藏元件","match_constraint","固定 0 寬","透明"], answer:"match_constraint" },
+      { type:"tf", q:"android:gravity 用於控制元件本身在父容器的位置。", answer:"F" },
+      { type:"mc", q:"哪個屬性常用來設定 EditText 的輸入類型（如密碼）？", options:["hint","inputType","maxLines","drawableEnd"], answer:"inputType" },
+      { type:"mc", q:"在猜拳範例中，電腦出拳隨機值範圍為？", options:["1~3","0~2","0~3","-1~1"], answer:"0~2" },
+      { type:"tf", q:"Math.random()*3 轉成 Int 後，不可能得到 2。", answer:"F" },
+      { type:"mc", q:"若要在字串中插入變數 playerName，常見寫法是？", options:["{playerName}","$playerName","%playerName","#playerName"], answer:"$playerName" },
+      { type:"tf", q:"在 Activity 中，onCreate 是生命週期中重要初始化時機。", answer:"T" }
+    ];
+    const pageSize = 10;
+    const totalPages = Math.ceil(questions.length / pageSize);
+    let currentPage = 1;
+    const userAnswers = {};
+    const checkedState = {};
+    const quizContainer = document.getElementById("quizContainer");
+    const pageInfo = document.getElementById("pageInfo");
+    const scoreInfo = document.getElementById("scoreInfo");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const checkBtn = document.getElementById("checkBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    function renderPage() {
+      const start = (currentPage - 1) * pageSize;
+      const end = start + pageSize;
+      const pageQuestions = questions.slice(start, end);
+      quizContainer.innerHTML = "";
+      pageQuestions.forEach((item, idx) => {
+        const realIndex = start + idx;
+        const wrap = document.createElement("div");
+        wrap.className = "question";
+        const title = document.createElement("h3");
+        title.textContent = `${realIndex + 1}. ${item.q}`;
+        wrap.appendChild(title);
+        const optionsBox = document.createElement("div");
+        optionsBox.className = "options";
+        const options = item.type === "tf" ? ["T", "F"] : item.options;
+        options.forEach((opt) => {
+          const label = document.createElement("label");
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = `q_${realIndex}`;
+          input.value = opt;
+          if (userAnswers[realIndex] === opt) input.checked = true;
+          input.addEventListener("change", () => { userAnswers[realIndex] = opt; updateScore(); });
+          label.appendChild(input);
+          label.appendChild(document.createTextNode(item.type === "tf" ? (opt === "T" ? " 是" : " 否") : ` ${opt}`));
+          optionsBox.appendChild(label);
+        });
+        wrap.appendChild(optionsBox);
+        const result = document.createElement("div");
+        result.className = "result";
+        if (checkedState[realIndex]) {
+          const ok = userAnswers[realIndex] === item.answer;
+          result.style.display = "block";
+          result.classList.add(ok ? "ok" : "bad");
+          result.textContent = ok ? "答對" : `答錯，正確答案：${item.type === "tf" ? (item.answer === "T" ? "是" : "否") : item.answer}`;
+        }
+        wrap.appendChild(result);
+        quizContainer.appendChild(wrap);
+      });
+      pageInfo.textContent = `第 ${currentPage} 頁 / 共 ${totalPages} 頁`;
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+    }
+    function updateScore() {
+      let answered = 0, correct = 0;
+      questions.forEach((q, i) => {
+        if (userAnswers[i] !== undefined) { answered++; if (userAnswers[i] === q.answer) correct++; }
+      });
+      scoreInfo.textContent = `已作答 ${answered} 題，正確 ${correct} 題`;
+    }
+    prevBtn.addEventListener("click", () => { if (currentPage > 1) { currentPage--; renderPage(); } });
+    nextBtn.addEventListener("click", () => { if (currentPage < totalPages) { currentPage++; renderPage(); } });
+    checkBtn.addEventListener("click", () => {
+      const start = (currentPage - 1) * pageSize;
+      const end = Math.min(start + pageSize, questions.length);
+      for (let i = start; i < end; i++) checkedState[i] = true;
+      renderPage();
+      updateScore();
+    });
+    resetBtn.addEventListener("click", () => {
+      Object.keys(userAnswers).forEach((k) => delete userAnswers[k]);
+      Object.keys(checkedState).forEach((k) => delete checkedState[k]);
+      currentPage = 1;
+      renderPage();
+      updateScore();
+    });
+    renderPage();
+    updateScore();
+  </script>
+</body>
+</html>

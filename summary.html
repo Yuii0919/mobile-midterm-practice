@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重點摘要</title>
+  <style>
+    body { margin: 0; font-family: "Microsoft JhengHei", sans-serif; background: #f6f8fc; color: #1f2937; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    .card { background: #fff; border: 1px solid #dbe3ef; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    h1, h2, h3 { margin-top: 0; }
+    ul { margin: 8px 0 0; padding-left: 18px; }
+    li { margin-bottom: 6px; }
+    a { color: #2563eb; text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>重點摘要（考前速讀）</h1>
+      <a href="index.html">回首頁</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>第一週與 Android 基礎</h3>
+        <ul>
+          <li>Android Studio 建立專案常見欄位：Name、Package、Minimum SDK、Language。</li>
+          <li><code>AndroidManifest.xml</code> 用來宣告 Activity、權限、主題與 app 重要資訊。</li>
+          <li><code>res</code> 內常見資料夾：<code>layout</code>、<code>drawable</code>、<code>values</code>。</li>
+          <li>Gradle 負責專案建構與依賴管理。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Kotlin 基礎</h3>
+        <ul>
+          <li><code>val</code> 不可重新指派、<code>var</code> 可重新指派。</li>
+          <li>型別推論可省略型別宣告，但仍是靜態型別語言。</li>
+          <li>Null safety：可空型別加 <code>?</code>，安全呼叫用 <code>?.</code>，<code>!!</code> 可能拋出 NPE。</li>
+          <li>條件可用 <code>if-else</code> 或 <code>when</code>。</li>
+          <li>函式以 <code>fun</code> 宣告，可含參數、回傳值與預設值。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Ch2 介面設計與佈局</h3>
+        <ul>
+          <li>常見佈局：LinearLayout、FrameLayout、ConstraintLayout。</li>
+          <li>LinearLayout 未設定 orientation 預設為 horizontal。</li>
+          <li>ConstraintLayout 元件至少要有水平與垂直方向約束。</li>
+          <li>字體大小建議用 <code>sp</code>，尺寸與間距建議用 <code>dp</code>。</li>
+          <li><code>gravity</code> 是內容對齊，<code>layout_gravity</code> 是元件對父層對齊。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Ch3 物件控制與事件監聽</h3>
+        <ul>
+          <li>先 <code>setContentView(...)</code> 才能正確 <code>findViewById(...)</code>。</li>
+          <li>按鈕監聽常用 <code>setOnClickListener { ... }</code>。</li>
+          <li>讀取輸入：<code>editText.text</code>，更新畫面：<code>textView.text = ...</code>。</li>
+          <li>RadioButton 透過 <code>isChecked</code> 判斷選中項目。</li>
+          <li><code>R</code> 類別存取所有資源 ID。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Ch4 訊息提示元件</h3>
+        <ul>
+          <li>Toast：<code>Toast.makeText(context, msg, duration).show()</code>。</li>
+          <li>Snackbar 可加動作按鈕：<code>setAction("按鈕") { ... }</code>。</li>
+          <li>AlertDialog 常見方法：<code>setTitle</code>、<code>setMessage</code>、<code>setItems</code>、<code>setSingleChoiceItems</code>。</li>
+          <li>AlertDialog 適合需要確認、單選、多選等互動情境。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
