@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>行動裝置｜期中考最後統整</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a222d;
+      --card: #232d3b;
+      --border: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #a78bfa;
+      --ok: #4ade80;
+      --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static !important; border-right: none; border-bottom: 1px solid var(--border); }
+    }
+    aside {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      max-height: 100vh;
+      overflow: auto;
+      padding: 20px 16px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+    }
+    aside h2 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin: 0 0 12px;
+      font-weight: 600;
+    }
+    nav a {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+    nav a:hover { background: var(--card); color: var(--accent); }
+    main { padding: 28px 32px 80px; max-width: 900px; }
+    .hero {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .hero p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .tagline { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    section {
+      margin-bottom: 40px;
+      scroll-margin-top: 20px;
+    }
+    section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent2);
+      margin: 24px 0 10px;
+    }
+    ul { margin: 8px 0; padding-left: 1.25rem; }
+    li { margin-bottom: 8px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 14px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 12px 0;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+    }
+    th { background: var(--surface); color: var(--accent); font-weight: 600; }
+    code, .mono {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 0.86em;
+      background: #0c1014;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    pre {
+      background: #0c1014;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+    pre code { border: none; padding: 0; background: none; }
+    .figure {
+      margin: 18px 0;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .figure figcaption {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .links a {
+      color: var(--accent);
+      word-break: break-all;
+    }
+    .note {
+      border-left: 3px solid var(--warn);
+      padding: 10px 14px;
+      background: rgba(251, 191, 36, 0.08);
+      margin: 12px 0;
+      font-size: 0.92rem;
+    }
+    .footer-links { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .footer-links a { color: var(--accent); margin-right: 16px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <h2>目錄</h2>
+      <nav>
+        <a href="#exam">考試規則</a>
+        <a href="#course">課程資源</a>
+        <a href="#ch1">Ch1 Android 概論</a>
+        <a href="#ch2">Ch2 介面與佈局</a>
+        <a href="#ch3">Ch3 控制與事件</a>
+        <a href="#ch4">Ch4 訊息提示</a>
+        <a href="#kotlin">Kotlin 基礎</a>
+        <a href="#cheat">考前速記表</a>
+      </nav>
+      <p style="margin-top:24px;font-size:0.8rem;color:var(--muted);line-height:1.5;">
+        依《期中考複習》84 頁為主，並補上課堂常考細節；圖為 SVG 示意。
+      </p>
+      <p style="margin-top:12px;font-size:0.8rem;">
+        <a href="index.html" style="color:var(--accent);">→ 題目練習</a>
+      </p>
+    </aside>
+    <main>
+      <header class="hero">
+        <h1>期中考最後統整</h1>
+        <p>114-2 致理 · 行動裝置應用程式開發 — 複習講義精簡版</p>
+        <div class="tagline">
+          <span class="pill">Ch1 專案結構</span>
+          <span class="pill">Ch2 XML 佈局</span>
+          <span class="pill">Ch3 Activity 與監聽</span>
+          <span class="pill">Ch4 提示</span>
+          <span class="pill">Kotlin 語法</span>
+        </div>
+      </header>
+
+      <section id="exam">
+        <h2>考試規則（練習系統對照）</h2>
+        <div class="card">
+          <ul>
+            <li><strong>題型</strong>：是非題 20 題、選擇題 30 題（練習頁為精簡子集）。</li>
+            <li><strong>範圍</strong>：Kotlin 基礎（<code>val</code>／<code>var</code>、型別推論、字串模板、空值 <code>?</code>、<code>?.</code>／<code>!!</code>、<code>if</code>／<code>when</code>、<code>fun</code>）。</li>
+            <li><strong>範圍</strong>：CH1 行動裝置與應用開發、CH2 介面設計與佈局、CH3 物件控制與事件監聽；CH4 訊息提示為課程延伸，建議一併複習。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="course">
+        <h2>課程資源（講義首頁）</h2>
+        <div class="card links">
+          <ul>
+            <li>重要公告：LINE 群組（詳見原講義 QR／連結）。</li>
+            <li>課程 PPT：數位學院。</li>
+            <li>上課範例 GitHub：<a href="https://github.com/peiyu971212/chihlee-android-class/tree/main" target="_blank" rel="noopener">peiyu971212/chihlee-android-class</a></li>
+            <li>雲端錄影：致理-114-2-行動裝置應用程式開發。</li>
+            <li>Figma 設計稿：講義內完整網址（行動裝置應用程式開發）。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="ch1">
+        <h2>Ch1 行動裝置應用程式開發</h2>
+        <ul>
+          <li><strong>Android</strong>：基於 Linux 核心與開源元件的行動 OS，由 Google 與開放手機聯盟持續發展。</li>
+          <li><strong>AndroidManifest.xml</strong>（<code>app/src/main/</code>）：記錄 Activity、Service、套件名、版本與<strong>權限</strong>等。</li>
+          <li><strong>Gradle</strong>：自動化建構與依賴管理。</li>
+        </ul>
+
+        <h3>Manifest 常考元素</h3>
+        <table>
+          <tr><th>元素／屬性</th><th>意義</th></tr>
+          <tr><td><code>&lt;manifest&gt;</code></td><td>根節點，包住整個 App 宣告</td></tr>
+          <tr><td><code>xmlns:android</code></td><td>Android 命名空間，供屬性使用</td></tr>
+          <tr><td><code>package</code></td><td>應用程式套件名稱</td></tr>
+          <tr><td><code>&lt;application&gt;</code></td><td>圖示、名稱、主題等應用層設定</td></tr>
+          <tr><td><code>android:icon</code> / <code>label</code> / <code>theme</code></td><td>圖示、顯示名稱、主題</td></tr>
+          <tr><td><code>&lt;activity&gt;</code></td><td>畫面（Activity）宣告</td></tr>
+          <tr><td><code>&lt;intent-filter&gt;</code></td><td>定義啟動入口（如 LAUNCHER 主畫面）</td></tr>
+        </table>
+        <p class="note">講義 OCR 曾出現「intnet-filter」，正式標籤為 <code>intent-filter</code>。</p>
+
+        <h3>程式與資源目錄</h3>
+        <ul>
+          <li><strong>java（或 kotlin 目錄）</strong>：主要程式碼；Activity 常繼承 <code>AppCompatActivity</code>，以 <code>setContentView(...)</code> 載入版面。</li>
+          <li><strong>res</strong>：<code>drawable</code>（圖/XML）、<code>layout</code>（XML 版面）、<code>mipmap</code>（不同解析度圖示）、<code>values</code>（顏色、字串、主題）。</li>
+        </ul>
+
+        <h3>建立專案與 Gradle（常考名詞）</h3>
+        <ul>
+          <li><strong>New Project</strong> 常見欄位：<code>Name</code>、<code>Package name</code>、<code>Save location</code>、<code>Language</code>（Kotlin）、<code>Minimum SDK</code>。</li>
+          <li><strong>Minimum SDK</strong> 越低 → 可安裝的舊裝置越多，但專案能直接使用的<strong>新 API 越少</strong>（需做相容或降功能）。</li>
+          <li><strong>Gradle</strong>：建構與依賴管理；常見檔案含專案／模組的 <code>build.gradle</code>（或 <code>.kts</code>）、<code>settings.gradle</code>。</li>
+          <li><strong>Project 檢視</strong>：實際磁碟資料夾結構；<strong>Android 檢視</strong>：以開發角度整理（常考「兩者差異」）。</li>
+        </ul>
+
+        <figure class="figure">
+          <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg" aria-label="Android 專案結構示意">
+            <rect width="420" height="200" fill="#1a222d"/>
+            <text x="20" y="28" fill="#38bdf8" font-size="14" font-weight="bold">app / src / main</text>
+            <rect x="20" y="40" width="180" height="140" rx="8" fill="#232d3b" stroke="#475569"/>
+            <text x="32" y="62" fill="#a78bfa" font-size="12">AndroidManifest.xml</text>
+            <text x="32" y="88" fill="#94a3b8" font-size="11">Activity、權限、圖示…</text>
+            <rect x="220" y="40" width="180" height="65" rx="8" fill="#232d3b" stroke="#475569"/>
+            <text x="232" y="62" fill="#a78bfa" font-size="12">java / kotlin</text>
+            <text x="232" y="82" fill="#94a3b8" font-size="11">MainActivity.kt</text>
+            <rect x="220" y="115" width="180" height="65" rx="8" fill="#232d3b" stroke="#475569"/>
+            <text x="232" y="137" fill="#a78bfa" font-size="12">res</text>
+            <text x="232" y="157" fill="#94a3b8" font-size="11">layout · drawable · values…</text>
+          </svg>
+          <figcaption>圖 1：Manifest、程式碼與 res 的關係（概念圖）。</figcaption>
+        </figure>
+      </section>
+
+      <section id="ch2">
+        <h2>Ch2 介面設計與佈局</h2>
+        <ul>
+          <li><strong>Layout</strong>：用 XML 描述 UI 排列，檔案放在 <code>res/layout/</code>（例如 <code>activity_main.xml</code>）。</li>
+          <li><strong>常見佈局</strong>：<code>LinearLayout</code>、<code>RelativeLayout</code>（以相對位置排列）、<code>FrameLayout</code>（堆疊、常作根容器或單一子視圖）、<code>ConstraintLayout</code>（Studio 預設常用）。</li>
+        </ul>
+
+        <h3>LinearLayout</h3>
+        <ul>
+          <li>依序排列子視圖；<code>android:orientation</code>：<code>vertical</code> 或 <code>horizontal</code>，<strong>未設時預設 horizontal</strong>。</li>
+        </ul>
+
+        <h3>寬高（必考）</h3>
+        <table>
+          <tr><th>值</th><th>說明</th></tr>
+          <tr><td><code>wrap_content</code></td><td>依內容（文字、圖、子元件）撐開</td></tr>
+          <tr><td><code>match_parent</code></td><td>盡量填滿父容器給的空間</td></tr>
+          <tr><td><code>0dp</code></td><td>在 <strong>ConstraintLayout</strong> 中常配合 constraint 撐滿</td></tr>
+          <tr><td>固定 dp</td><td>固定像素邏輯尺寸，少用於需適配多螢幕時</td></tr>
+        </table>
+
+        <h3>ConstraintLayout</h3>
+        <ul>
+          <li>元件間以<strong>約束（constraint）</strong>定位，無固定「巢狀階層」思維。</li>
+          <li>每個元件至少要有<strong>一個水平 + 一個垂直</strong>約束，否則 XML 會報錯。</li>
+        </ul>
+
+        <figure class="figure">
+          <svg viewBox="0 0 360 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="360" height="120" fill="#1a222d"/>
+            <rect x="20" y="20" width="320" height="80" rx="6" fill="none" stroke="#475569" stroke-width="2"/>
+            <rect x="130" y="40" width="100" height="40" rx="6" fill="#38bdf8" opacity="0.25" stroke="#38bdf8"/>
+            <line x1="130" y1="60" x2="20" y2="60" stroke="#4ade80" stroke-width="2"/>
+            <line x1="230" y1="60" x2="340" y2="60" stroke="#4ade80" stroke-width="2"/>
+            <line x1="180" y1="40" x2="180" y2="20" stroke="#fbbf24" stroke-width="2"/>
+            <line x1="180" y1="80" x2="180" y2="100" stroke="#fbbf24" stroke-width="2"/>
+            <text x="24" y="54" fill="#94a3b8" font-size="10">parent start</text>
+            <text x="258" y="54" fill="#94a3b8" font-size="10">parent end</text>
+            <text x="150" y="16" fill="#94a3b8" font-size="10">top</text>
+            <text x="150" y="116" fill="#94a3b8" font-size="10">bottom</text>
+          </svg>
+          <figcaption>圖 2：ConstraintLayout — 水平與垂直方向都需有約束（示意）。</figcaption>
+        </figure>
+
+        <h3>Margin 與 Padding</h3>
+        <ul>
+          <li><strong>Margin</strong>：元件<strong>外側</strong>與其他元件／邊界的距離。</li>
+          <li><strong>Padding</strong>：元件<strong>內側</strong>內容與邊框的距離。</li>
+          <li>可細分 <code>Top/Bottom/Start/End</code>、<code>Horizontal/Vertical</code>、<code>Left/Right</code>（padding 同理）。</li>
+        </ul>
+
+        <figure class="figure">
+          <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="140" fill="#1a222d"/>
+            <rect x="30" y="25" width="260" height="90" rx="4" fill="none" stroke="#64748b" stroke-dasharray="6 4"/>
+            <text x="34" y="20" fill="#94a3b8" font-size="10">父容器</text>
+            <rect x="70" y="50" width="180" height="50" rx="4" fill="#232d3b" stroke="#38bdf8"/>
+            <rect x="85" y="62" width="150" height="26" rx="2" fill="#38bdf8" opacity="0.35"/>
+            <text x="78" y="44" fill="#fbbf24" font-size="9">margin（外距）</text>
+            <text x="92" y="78" fill="#4ade80" font-size="9">padding 內</text>
+          </svg>
+          <figcaption>圖 3：外距 margin vs 內距 padding。</figcaption>
+        </figure>
+
+        <h3>常用視圖與重點屬性</h3>
+        <table>
+          <tr><th>元件</th><th>常考屬性</th></tr>
+          <tr><td>TextView</td><td><code>id</code>、<code>text</code>、<code>textColor</code>、<code>textSize</code>（<strong>sp</strong>）、<code>background</code></td></tr>
+          <tr><td>Button</td><td><code>text</code>、<code>textAllCaps</code>、<code>backgroundTint</code>、<code>enabled</code></td></tr>
+          <tr><td>EditText</td><td><code>hint</code>、<code>inputType</code>、<code>maxLines</code></td></tr>
+          <tr><td>RadioGroup</td><td><code>orientation</code>、<code>checkedButton</code>（XML 預設選中 id）</td></tr>
+          <tr><td>RadioButton</td><td><code>checked</code>（true／false）</td></tr>
+          <tr><td>ImageView</td><td><code>android:src</code> → 如 <code>@drawable/檔名</code></td></tr>
+        </table>
+
+        <h3>Selector 與 Shape</h3>
+        <ul>
+          <li><strong>Selector</strong>：依狀態（按下、選取等）切換 drawable／顏色，多放在 <code>res/drawable/</code>。</li>
+          <li><strong>Shape</strong>：<code>rectangle</code>、<code>oval</code>、<code>line</code>；<code>corners</code> 圓角、<code>stroke</code> 邊框、<code>solid</code> 填色。</li>
+        </ul>
+        <table>
+          <tr><th>標籤</th><th>重點屬性</th><th>用途</th></tr>
+          <tr><td><code>&lt;selector&gt;</code></td><td>（根節點）</td><td>狀態選擇器根節點</td></tr>
+          <tr><td><code>&lt;item&gt;</code></td><td><code>android:state_pressed</code> 等</td><td>符合狀態時套用哪個 drawable／色</td></tr>
+          <tr><td><code>&lt;item&gt;</code></td><td><code>android:drawable</code></td><td>該分支要顯示的圖或 shape</td></tr>
+        </table>
+        <ul>
+          <li><strong>Corners</strong>：可用 <code>android:radius</code> 四角同圓角，或 <code>topLeftRadius</code>、<code>topRightRadius</code>、<code>bottomLeftRadius</code>、<code>bottomRightRadius</code> 分開設定。</li>
+        </ul>
+
+        <h3>gravity 與 layout_gravity</h3>
+        <ul>
+          <li><code>android:gravity</code>：控制<strong>自己內部</strong>子內容的對齊。</li>
+          <li><code>android:layout_gravity</code>：此 View 在<strong>父容器</strong>中的對齊（center、left、top…）。</li>
+        </ul>
+
+        <h3>資源與單位</h3>
+        <ul>
+          <li><code>res/values/colors.xml</code>、<code>strings.xml</code>：集中管理顏色與字串（利於多語系與維護）。</li>
+          <li>另可放 <code>dimens.xml</code> 統一間距與尺寸常數（與講義「values 內變數值」觀念一致）。</li>
+          <li><strong>dp</strong>：與螢幕密度無關的「尺寸」單位（寬高、margin、padding）。</li>
+          <li><strong>sp</strong>：文字大小；會隨系統「字型大小」設定縮放，故 TextView 字級用 sp。</li>
+          <li><strong>dpi</strong>：螢幕物理密度概念；dp 與實際像素換算會依 dpi 而變，考題常問「為何用 dp 而非 px」。</li>
+        </ul>
+      </section>
+
+      <section id="ch3">
+        <h2>Ch3 物件控制與事件監聽</h2>
+        <ul>
+          <li>Kotlin 檔 <code>.kt</code>（如 <code>MainActivity.kt</code>）：處理互動、更新 UI、生命週期等。</li>
+          <li><code>AppCompatActivity</code>：AndroidX，可在較舊 OS 使用較新 UI 能力。</li>
+          <li><code>onCreate</code>：Activity 建立時呼叫；內呼叫 <code>super.onCreate(...)</code> 後 <code>setContentView(R.layout.activity_main)</code> 載入版面。</li>
+        </ul>
+
+        <h3>連結 XML 元件</h3>
+        <pre><code>val tvName = findViewById&lt;TextView&gt;(R.id.tvName)
+tvName.text = "你的名字"</code></pre>
+        <ul>
+          <li>更新文字：<code>textView.text = "..."</code></li>
+          <li>以程式設字級：<code>tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30f)</code>（<code>30f</code> 為 Float）。</li>
+        </ul>
+
+        <h3>事件監聽</h3>
+        <ul>
+          <li>使用者操作稱為 <strong>event</strong>；按鈕常用 <code>setOnClickListener</code>。</li>
+          <li>兩種寫法：Lambda 區塊 <code>setOnClickListener { ... }</code> 或傳入監聽物件（講義所謂「函式形式」）。</li>
+        </ul>
+
+        <h3>資源 ID 與範例邏輯</h3>
+        <ul>
+          <li>編譯器產生 <code>R</code> 類別：<code>R.layout.xxx</code>、<code>R.id.xxx</code>、<code>R.string.xxx</code>、<code>R.drawable.xxx</code>、<code>R.color.xxx</code>。</li>
+          <li>XML 元件若要在程式控制，必須有 <code>android:id="@+id/名稱"</code>。</li>
+          <li><strong>RadioButton</strong>：執行期可用 <code>isChecked</code> 判斷；搭配 <code>when</code> 對應剪刀／石頭／布等文字或邏輯。</li>
+          <li><strong>猜拳亂數</strong>：<code>(Math.random() * 3).toInt()</code> 得到 <code>0、1、2</code>（講義範例常對應剪刀／石頭／布）。</li>
+          <li>換行字元在字串中為 <code>\n</code>。</li>
+        </ul>
+      </section>
+
+      <section id="ch4">
+        <h2>Ch4 訊息提示元件（課程延伸）</h2>
+        <p style="color:var(--muted);font-size:0.95rem;margin:0 0 12px;">複習講義主軸至 Kotlin；此章對照練習題與實作，建議熟記 API 名稱與情境。</p>
+        <ul>
+          <li><strong>Toast</strong>：<code>Toast.makeText(context, "訊息", Toast.LENGTH_SHORT).show()</code>；第三參數亦可用 <code>LENGTH_LONG</code>。一定要 <code>show()</code>。</li>
+          <li>自訂版面：建立 <code>layout</code>（如 <code>custom_toast.xml</code>），inflate 後設給 Toast 的 view；可用 <code>setGravity</code> 調位置與偏移。</li>
+          <li><strong>Snackbar</strong>：需錨定 View（如 root）；可 <code>Snackbar.make(...).setAction("動作") { }.show()</code>；時長含 <code>LENGTH_INDEFINITE</code> 等。</li>
+          <li><strong>AlertDialog</strong>：<code>AlertDialog.Builder(context)</code> → <code>setTitle</code>、<code>setMessage</code>、<code>setItems</code>（清單）、<code>setSingleChoiceItems</code>（單選）；按鈕為 <code>setPositiveButton</code>／<code>setNegativeButton</code>／<code>setNeutralButton</code>。</li>
+          <li><strong>情境</strong>：Toast 短提示；Snackbar 可附「復原」等動作；AlertDialog 適合確認、選一項、中斷流程的互動。</li>
+        </ul>
+      </section>
+
+      <section id="kotlin">
+        <h2>Kotlin 基礎（講義後半）</h2>
+        <ul>
+          <li>設計目標：較 Java 精簡、強化<strong>空值安全</strong>；亦為 Android 官方推薦語言之一。</li>
+          <li><code>val</code>：唯讀，不可重新指派；<code>var</code>：可變。</li>
+          <li>數值型別含 <code>Int</code>、<code>Long</code>、<code>Float</code>、<code>Double</code> 等。</li>
+        </ul>
+
+        <h3>Null safety（必考觀念）</h3>
+        <ul>
+          <li>預設變數不可為 null；未初始化會編譯錯誤。</li>
+          <li>需表達「沒有分數」vs「0 分」時，不能一律用 0 混為「缺考」。</li>
+          <li>可空型別在型別後加 <code>?</code>，例如 <code>Int?</code>。</li>
+          <li><code>?.</code>：<strong>安全呼叫</strong>，左側為 null 時整段為 null，不拋例外。</li>
+          <li><code>!!</code>：<strong>非空斷言</strong>，保證不為 null；若執行時為 null → <code>NullPointerException</code>。安全性：<code>?.</code> 優於 <code>!!</code>。</li>
+        </ul>
+
+        <figure class="figure">
+          <svg viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="100" fill="#1a222d"/>
+            <rect x="20" y="25" width="100" height="50" rx="6" fill="#232d3b" stroke="#94a3b8"/>
+            <text x="38" y="55" fill="#e2e8f0" font-size="11">Int 不可 null</text>
+            <text x="24" y="88" fill="#64748b" font-size="9">預設安全</text>
+            <rect x="150" y="25" width="100" height="50" rx="6" fill="#232d3b" stroke="#a78bfa"/>
+            <text x="175" y="48" fill="#e2e8f0" font-size="11">Int?</text>
+            <text x="158" y="65" fill="#94a3b8" font-size="9">可為 null</text>
+            <rect x="280" y="25" width="100" height="50" rx="6" fill="#232d3b" stroke="#38bdf8"/>
+            <text x="295" y="48" fill="#e2e8f0" font-size="11">?.</text>
+            <text x="288" y="65" fill="#94a3b8" font-size="9">安全存取</text>
+          </svg>
+          <figcaption>圖 4：不可空、可空與安全呼叫的關係。</figcaption>
+        </figure>
+
+        <h3>類型推論與字串</h3>
+        <ul>
+          <li>Kotlin 為<strong>靜態型別</strong>；有初值時編譯器可推斷型別（如 <code>val s = "Kotlin"</code> → String）。</li>
+          <li>推論後型別固定，不能對該變數呼叫不相容方法（講義例：<code>languageName.inc()</code> 無法編譯）。</li>
+          <li><strong>字串模板</strong>：<code>"Hello, $name"</code>、<code>"總和：${a + b}"</code>；可搭配 playground 練習（講義連結如 <span class="mono">pl.kotl.in</span>）。</li>
+        </ul>
+
+        <h3>類別、條件、函式</h3>
+        <ul>
+          <li><code>class</code> 大寫開頭；<strong>屬性</strong>用 <code>val</code>／<code>var</code>；<strong>方法</strong>用 <code>fun</code>。</li>
+          <li><code>if-else</code> 可作<strong>運算式</strong>指派給變數，例如 <code>val msg = if (n &gt; 0) "正" else "非正"</code>。</li>
+          <li><code>when</code>：可寫 <code>when { 條件 -&gt; 值; else -&gt; 預設 }</code>；比巢狀 <code>if</code> 易讀。</li>
+          <li><code>fun 名稱(參數): 回傳型 { ... }</code>；可有預設參數，例如 <code>fun greet(x: Int = 10)</code>、多參數各給預設值。</li>
+          <li>單一運算式函式可寫成 <code>fun sq(n: Int) = n * n</code>，省略大括號與 <code>return</code>。</li>
+          <li><strong>匿名函式</strong>：無名稱，可賦值給變數或當參數傳遞。</li>
+          <li>可空型別常用 <strong>Elvis</strong>：<code>score ?: 0</code> 表示左側為 null 時改用右側（與「缺考無分數」語意搭配考）。</li>
+          <li>每個可執行檔案頂層僅一個 <code>fun main()</code> 作為程式進入點（考「不能多個 main」）。</li>
+        </ul>
+      </section>
+
+      <section id="cheat">
+        <h2>考前速記表</h2>
+        <table>
+          <tr><th>主題</th><th>一句話</th></tr>
+          <tr><td>Manifest</td><td>誰能啟動、權限、Application／Activity 設定</td></tr>
+          <tr><td>res</td><td>layout／drawable／values 分工清楚</td></tr>
+          <tr><td>LinearLayout</td><td>預設 horizontal；vertical 直排</td></tr>
+          <tr><td>Constraint</td><td>每元件水平+垂直約束；match 用 constraint 時常見 0dp</td></tr>
+          <tr><td>sp / dp</td><td>文字 sp；尺寸與間距 dp</td></tr>
+          <tr><td>gravity</td><td>內容對齊 vs 自己在父層位置 layout_gravity</td></tr>
+          <tr><td>Activity</td><td>onCreate → setContentView → findViewById</td></tr>
+          <tr><td>點擊</td><td><code>button.setOnClickListener { }</code></td></tr>
+          <tr><td>Null</td><td><code>?</code> 可空；<code>?.</code> 安全；<code>!!</code> 危險</td></tr>
+          <tr><td>Toast</td><td><code>makeText</code> → <code>show()</code>；SHORT／LONG</td></tr>
+          <tr><td>Snackbar</td><td>可 <code>setAction</code>；錨定 View</td></tr>
+          <tr><td>Dialog</td><td>Builder；<code>setItems</code>／單選／三按鈕</td></tr>
+          <tr><td>Gradle</td><td>建構；<code>build.gradle</code>、依賴</td></tr>
+          <tr><td>Minimum SDK</td><td>越低裝置越多、新 API 越少</td></tr>
+        </table>
+      </section>
+
+      <div class="footer-links">
+        <a href="summary.html">舊版摘要頁</a>
+        <a href="index.html">期中考練習系統</a>
+        <a href="quiz.html">測驗</a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
